@@ -250,5 +250,76 @@ repeatedString = string.rep(string2,2)
 print(repeatedString)
 
 
+
+--[[for k, v in pairs(t) do
+    print(k, v)
+end
+泛型 for 在自己内部保存迭代函数，实际上它保存三个值：迭代函数、状态常量、控制变量。
+泛型 for 迭代器提供了集合的 key/value 对，语法格式如下：
+
+]]
+
 array = {"Lua", "Tutorial"}
+
+for key,value in ipairs(array)
+do
+   print (key,value)
+
+end
+
+
+--[[ 无状态的迭代器是指不保留任何状态的迭代器，因此在循环中我们可以利用无状态迭代器避免创建闭包花费额外的代价。
+
+   每一次迭代，迭代函数都是用两个变量（状态常量和控制变量）的值作为参数被调用，一个无状态的迭代器只利用这两个值可以获取下一个元素
+
+
+   这种无状态迭代器的典型的简单的例子是ipairs，他遍历数组的每一个元素。
+
+
+
+]]
+
+
+
+function square(iteratorMaxCount,currentNumber)
+   if currentNumber < iteratorMaxCount
+   then
+      currentNumber = currentNumber + 1
+   return currentNumber , currentNumber*currentNumber
+   end
+end
+
+
+for i,n in square, 3, 0
+do
+   print(i,n)
+end
+
+
+function iter(a,i)
+i = i + 1
+local v = a[i]
+if v then
+   return i,v
+
+   end
+end
+
+function ipairs(a)
+   return iter,a,0
+endx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
